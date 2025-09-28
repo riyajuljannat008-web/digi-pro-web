@@ -1,175 +1,142 @@
 
-/* === Mobile layout fix === */
-:root {
-  --navH: 56px;   /* আপনার মোবাইল navbar-এর আসল height */
-  --subH: 40px;   /* subnavbar-এর height (All/Category bar) */
+/* === Navbar Base === */
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#131921;
+  color:#fff;
+  padding:10px 16px;
+  flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+.logo{ font-size:22px; font-weight:700; color:#fff; text-decoration:none; }
+.deliver{ display:flex; align-items:center; gap:6px; font-size:14px; color:#ddd; }
+.deliver a{ color:#febd69; text-decoration:none; }
+
+.nav-search{
+  flex:1;
+  display:flex;
+  margin:0 20px;
+  max-width:700px;
+}
+.nav-search select{
+  border:1px solid #ccc; border-right:none; padding:8px;
+  border-top-left-radius:6px; border-bottom-left-radius:6px;
+}
+.nav-search input{ flex:1; padding:8px; border:1px solid #ccc; outline:none; }
+.nav-search button{
+  padding:0 14px; border:none; background:#febd69; cursor:pointer;
+  border-top-right-radius:6px; border-bottom-right-radius:6px;
 }
 
-@media (max-width: 768px) {
-  /* 1) Navbar fixed + top */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
+.nav-right{ display:flex; align-items:center; gap:18px; }
+.nav-right .lang,
+.nav-right .account,
+.nav-right .orders{ font-size:13px; }
+.nav-right a{ color:#fff; text-decoration:none; font-size:14px; }
+.cart a{ font-weight:600; }
 
-  /* 2) Subnavbar fixed + navbar-এর ঠিক নিচে */
-  .subnav, .sub-navbar, .category-bar { /* যেটা আপনার subnav এর ক্লাস */
-    position: fixed;
-    top: var(--navH);
-    left: 0;
-    right: 0;
-    z-index: 999;       /* navbar-এর ঠিক নিচে */
-    width: 100%;
-  }
-
-  /* 3) Body/পেজের টপে যথেষ্ট জায়গা দিন যাতে কনটেন্ট ঢুকে না যায় */
-  body {
-    padding-top: calc(var(--navH) + var(--subH) + 12px);
-    /* +12px ছোট্ট গ্যাপ; চাইলে 8–16px টিউন করতে পারেন */
-  }
-
-  /* 4) হিরো/স্লাইডার থেকে যেকোনো নেগেটিভ মার্জিন/টপ মার্জিন সরান */
-  .hero, .slider, .banner, .carousel {
-    margin-top: 0 !important;
-  }
+/* === Sub Navbar === */
+.sub-navbar{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding:8px 16px;
+  background:#232f3e;
+  color:#fff;
+  overflow-x:auto;
+  scrollbar-width:thin;
 }
-/* ===== Mobile / Phone view only ===== */
-@media (max-width: 800px) {
-  :root {
-    --navh: 56px;
-    --navbg: #131921;
-    --subbg: #1e2a38;
-    --accent: #ff9900;
-  }
+.sub-navbar a, .sub-navbar .all-btn{
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  padding:6px 10px;
+  border-radius:6px;
+}
+.sub-navbar a:hover{ background:rgba(255,255,255,.1); }
 
-  /* Body offset for fixed bars */
-  body {
-    padding-top: calc(var(--navh) + 10px + 48px) !important;
-    background: #f5f5f5;
-  }
+/* === Hero Slider === */
+.slider{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  height: clamp(220px, 40vw, 420px);
+}
+.slider img{
+  width:100%; height:100%; object-fit:cover;
+  display:none;
+}
+.slider img.active{ display:block; }
+.slider .nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,.4); color:#fff; border:none;
+  font-size:22px; cursor:pointer; padding:8px 12px; border-radius:50%;
+}
+.slider .prev{ left:10px; }
+.slider .next{ right:10px; }
+.dots{
+  position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+  display:flex; gap:6px;
+}
+.dots button{
+  width:10px; height:10px; border-radius:50%; border:none;
+  background:#ddd; cursor:pointer;
+}
+.dots button.active{ background:#febd69; }
 
-  /* ===== TOP NAVBAR ===== */
-  .navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: var(--navbg) !important;
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  }
-  .navbar .nav-left {
-    min-height: var(--navh);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 8px 12px;
-  }
-  .navbar .logo {
-    font-size: 22px;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
-  }
-  .navbar .deliver {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: #fff;
-    font-weight: 600;
-  }
-  .navbar .deliver i { font-size: 14px; color: var(--accent); }
+/* === Responsive Breakpoints === */
 
-  .navbar .nav-right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-  }
-  .navbar .cart {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: #fff;
-    background: #0f1620;
-    border-radius: 999px;
-    padding: 6px 10px;
-    font-weight: 700;
-  }
+/* Large Desktop (≤1200px) */
+@media (max-width:1200px){
+  .nav-search{ margin:0 10px; }
+  .product-grid{ grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); }
+}
 
-  /* ===== SEARCH BAR ===== */
-  .nav-search {
-    display: grid !important;
-    grid-template-columns: 84px 1fr 46px;
-    gap: 8px;
-    padding: 8px 12px 10px;
-    background: #0f1620;
-    margin: 0 !important;
-  }
-  .nav-search select {
-    width: 100%;
-    appearance: none;
-    border: 1px solid #223;
-    border-radius: 8px;
-    background: #0b1119;
-    color: #ddd;
-    padding: 10px 8px;
-  }
-  .nav-search input {
-    border: 1px solid #223;
-    border-radius: 8px;
-    padding: 10px 12px;
-    background: #fff;
-    color: #111;
-  }
-  .nav-search button {
-    border: none;
-    border-radius: 8px;
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-  }
+/* Laptop (≤992px) */
+@media (max-width:992px){
+  .navbar{ padding:10px; }
+  .nav-search{ width:100%; margin:10px 0; }
+  .sub-navbar{ flex-wrap:wrap; }
+}
 
-  /* ===== SUB NAVBAR ===== */
-  .sub-navbar {
-    position: fixed;
-    top: calc(var(--navh) + 10px);
-    left: 0; right: 0;
-    z-index: 999;
-    background: var(--subbg);
-    color: #e8eef6;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-top: 1px solid #223;
-    border-bottom: 1px solid #223;
-    min-height: 48px;
-  }
-  .sub-navbar .all-btn {
-    font-weight: 800;
-    font-size: 18px;
-    color: #e8eef6;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-  .sub-navbar .fa-bars {
-    background: #c0c4cb66;
-    color: #333;
-    padding: 6px;
-    border-radius: 8px;
-    width: 20px;
-    text-align: center;
-  }
-  /* hide category links on phone */
-  .sub-navbar a { display: none !important; }
+/* Tablet (≤768px) */
+@media (max-width:768px){
+  .nav-search{ width:100%; }
+  .cart-row{ grid-template-columns:64px 1fr auto; }
+}
 
-  /* spacing fix for hero/slider */
-  .slider { margin-top: 8px; }
+/* Mobile (≤600px) */
+@media (max-width:600px){
+  .navbar{
+    display:flex; flex-wrap:wrap; align-items:center;
+    gap:8px; padding:8px 10px;
+  }
+  .nav-left{ order:1; flex:1 1 auto; display:flex; align-items:center; gap:8px; }
+  .nav-right{
+    order:2; margin-left:auto; display:flex; align-items:center;
+  }
+  /* hide EN, Orders, Account */
+  .nav-right .lang,
+  .nav-right .orders,
+  .nav-right .account{ display:none !important; }
+  /* show only cart */
+  .nav-right .cart a{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 10px; background:#232f3e; color:#fff !important;
+    border-radius:16px; text-decoration:none; font-size:14px;
+  }
+  .nav-search{ order:3; flex:1 0 100%; margin-top:6px; }
+
+  /* sub-nav: only All button */
+  .sub-navbar a{ display:none !important; }
+  .sub-navbar .all-btn{ display:inline-flex !important; }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion:reduce){
+  .slider, .side-menu__panel{ transition:none; }
 }
