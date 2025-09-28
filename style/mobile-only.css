@@ -37,13 +37,13 @@
   }
 }
 /* ===== Mobile / Phone view only ===== */
-/* @media (max-width: 800px) {
+@media (max-width: 800px) {
   :root {
     --navh: 56px;
     --navbg: #131921;
     --subbg: #1e2a38;
     --accent: #ff9900;
-  } */
+  }
 
   /* Body offset for fixed bars */
   body {
