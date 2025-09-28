@@ -1,11 +1,49 @@
+
+/* === Mobile layout fix === */
+:root {
+  --navH: 56px;   /* আপনার মোবাইল navbar-এর আসল height */
+  --subH: 40px;   /* subnavbar-এর height (All/Category bar) */
+}
+
+@media (max-width: 768px) {
+  /* 1) Navbar fixed + top */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  /* 2) Subnavbar fixed + navbar-এর ঠিক নিচে */
+  .subnav, .sub-navbar, .category-bar { /* যেটা আপনার subnav এর ক্লাস */
+    position: fixed;
+    top: var(--navH);
+    left: 0;
+    right: 0;
+    z-index: 999;       /* navbar-এর ঠিক নিচে */
+    width: 100%;
+  }
+
+  /* 3) Body/পেজের টপে যথেষ্ট জায়গা দিন যাতে কনটেন্ট ঢুকে না যায় */
+  body {
+    padding-top: calc(var(--navH) + var(--subH) + 12px);
+    /* +12px ছোট্ট গ্যাপ; চাইলে 8–16px টিউন করতে পারেন */
+  }
+
+  /* 4) হিরো/স্লাইডার থেকে যেকোনো নেগেটিভ মার্জিন/টপ মার্জিন সরান */
+  .hero, .slider, .banner, .carousel {
+    margin-top: 0 !important;
+  }
+}
 /* ===== Mobile / Phone view only ===== */
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   :root {
     --navh: 56px;
     --navbg: #131921;
     --subbg: #1e2a38;
     --accent: #ff9900;
-  }
+  } */
 
   /* Body offset for fixed bars */
   body {
