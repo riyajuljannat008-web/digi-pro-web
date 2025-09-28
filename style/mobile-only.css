@@ -109,7 +109,7 @@
   .cart-row{ grid-template-columns:64px 1fr auto; }
 }
 
-/* Mobile (≤600px) */
+Mobile (≤600px)
 @media (max-width:600px){
   .navbar{
     display:flex; flex-wrap:wrap; align-items:center;
