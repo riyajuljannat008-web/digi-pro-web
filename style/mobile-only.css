@@ -2,7 +2,7 @@
 /* === Mobile layout fix === */
 :root {
   --navH: 56px;   /* আপনার মোবাইল navbar-এর আসল height */
-  --subH: 40px;   /* subnavbar-এর height (All/Category bar) */
+  --subH: 10px;   /* subnavbar-এর height (All/Category bar) */
 }
 
 @media (max-width: 768px) {
